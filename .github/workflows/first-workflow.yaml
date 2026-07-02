@@ -2,22 +2,21 @@ name: First Test on AWS
 
 on:
   push:
-    branches: 
-      - main 
+    branches:
+      - main
 
 
 jobs:
-  
+
   job1:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 # some of inbult functions, provided by github fro dooing some of the basic tasks checkout means make a copy of the code of the repo
-      
-      - name: Install python3
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: "3.9"
 
       - name: Install dependencies
         run: |
@@ -25,4 +24,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest 
+        run: pytest -v
