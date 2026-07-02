@@ -45,7 +45,7 @@ jobs:
             push: true
             tags: roshithareddy/dsml-flask:latest
 
-# # create a job for pushing to ECR
+# # create a job for pushing to ECR(ecr)
 #   job3:
 #     needs: job1
 #     runs-on: ubuntu-latest
