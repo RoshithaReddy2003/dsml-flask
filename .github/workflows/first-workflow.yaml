@@ -27,3 +27,49 @@ jobs:
 
       - name: Run tests
         run: pytest 
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: login to docker hub
+          uses: docker/login-action@v3
+          with:
+            username: 'roshithareddy'
+            password: dummy
+
+        - name: build docker image and push to docker hub
+          uses: docker/build-push-action@v3
+          with:
+            push: true
+            tags: roshithareddy/dsml-flask:latest
+
+# create a job for pushing to ECR
+  job3:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: login to AWS ECR
+          uses: aws-actions/amazon-ecr-login@v2
+
+        - name: build docker image and push to ECR
+          uses: docker/build-push-action@v3
+          with:
+            push: true
+            tags: 123456789012.dkr.ecr.us-east-1.amazonaws.com/dsml-flask:latest
+
+# create a job for deploying to AWS ECS
+  job4:
+    needs: job3
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+        - name: deploy to AWS ECS
+          uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+          with:
+            task-definition: ecs-task-def.json
+            service: dsml-flask-service
+            cluster: dsml-flask-cluster
+            wait-for-service-stability: true
