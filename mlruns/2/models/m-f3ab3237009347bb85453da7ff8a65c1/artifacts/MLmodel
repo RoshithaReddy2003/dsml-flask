@@ -1,0 +1,23 @@
+artifact_path: /Users/mac/Documents/GitHub/dsml-flask/mlruns/2/models/m-f3ab3237009347bb85453da7ff8a65c1/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.13.14
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.14.0
+model_id: m-f3ab3237009347bb85453da7ff8a65c1
+model_size_bytes: 967327
+model_uuid: m-f3ab3237009347bb85453da7ff8a65c1
+prompts: null
+run_id: eaaaf9b32fdd49a08b791e17ef49d859
+utc_time_created: '2026-07-03 01:30:00.648747'
